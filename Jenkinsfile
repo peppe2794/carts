@@ -6,9 +6,6 @@ pipeline {
     DOCKER_TAG = getVersion().trim()
     IMAGE="carts:"
   }
-  tools {
-    nodejs 'NodeJS'
-  }
   agent any
   stages {
     stage('SonarQube analysis'){
