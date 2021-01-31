@@ -30,6 +30,7 @@ pipeline {
       steps{
         script {
           sh 'pwd'
+          sh 'echo ${WORKSPACE}'
           dockerImage = docker.build("$registry:$DOCKER_TAG")
         }
       }
