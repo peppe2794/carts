@@ -8,13 +8,6 @@ pipeline {
   }
   agent any
   stages {
-    stage('SonarQube analysis'){
-      steps{
-        withSonarQubeEnv(installationName: 'Sonarqube', credentialsId: 'Sonarqube') {
-          sh "${tool("sonar_scanner")}/bin/sonar-scanner"
-        }
-      }
-    }
     stage('Build'){
       agent {
         docker {
@@ -24,6 +17,13 @@ pipeline {
       }
       steps{
          sh 'mvn -B -DskipTests clean package'
+      }
+    }
+    stage('SonarQube analysis'){
+      steps{
+        withSonarQubeEnv(installationName: 'Sonarqube', credentialsId: 'Sonarqube') {
+          sh "${tool("sonar_scanner")}/bin/sonar-scanner"
+        }
       }
     }
     stage('Building image') {
