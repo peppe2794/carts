@@ -12,7 +12,7 @@ pipeline {
       agent {
         docker {
           image 'maven:3.6-jdk-11' 
-          args '-v /root/.m2:/root/.m2 -v ${env.WORKSPACE}:/usr/src/mymaven -w /usr/src/mymaven' 
+          args '-v ${env.WORKSPACE}:/usr/src/mymaven -w /usr/src/mymaven' 
         }
       }
       steps{
