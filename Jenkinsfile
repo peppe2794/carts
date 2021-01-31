@@ -29,6 +29,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
+          sh 'mv target/*.jar ../app.jar'
           dockerImage = docker.build("$registry:$DOCKER_TAG")
         }
       }
