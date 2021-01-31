@@ -12,7 +12,7 @@ pipeline {
       agent {
         docker {
           image 'maven:3.6-jdk-11' 
-          args '-v ${PWD}:/usr/src/mymaven -w /usr/src/mymaven' 
+          args '-v /var/lib/jenkins/workspace/carts:/usr/src/mymaven -w /usr/src/mymaven' 
         }
       }
       steps{
