@@ -29,7 +29,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          sh 'mv ./target/*.jar ../app.jar'
+          sh 'mv ./target/*.jar ./app.jar'
           sh 'pwd'
           dockerImage = docker.build("$registry:$DOCKER_TAG")
         }
