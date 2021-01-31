@@ -19,12 +19,12 @@ pipeline {
       }
     }
     stage('Build'){
-    agent {
+      agent {
         docker {
-            image 'maven:3.6-jdk-11' 
-            args '-v /root/.m2:/root/.m2' 
+          image 'maven:3.6-jdk-11' 
+          rgs '-v /root/.m2:/root/.m2' 
         }
-    }
+      }
       steps{
          sh 'mvn -B -DskipTests clean package' 
     }
@@ -45,12 +45,6 @@ pipeline {
       }
     }
  }
-  post{
-    success{
-      echo 'Post success'
-      build job: 'socks_application', parameters: [string (value: "$IMAGE"+"$DOCKER_TAG", description: 'Parametro', name: 'FRONT_END')]
-    }
-  }
 }
 
 def getVersion(){
