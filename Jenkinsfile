@@ -29,7 +29,8 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          sh 'mv target/*.jar ../app.jar'
+          sh 'mv ./target/*.jar ../app.jar'
+          sh 'pwd'
           dockerImage = docker.build("$registry:$DOCKER_TAG")
         }
       }
@@ -37,6 +38,7 @@ pipeline {
     stage('Push Image') {
       steps{
         script {
+          sh 'pwd'
           docker.withRegistry( '', registryCredential ) {
             dockerImage.push()
           }
