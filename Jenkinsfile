@@ -30,8 +30,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          sh 'pwd'
-          sh 'echo ${WORKSPACE}'
+          sh 'cp /target/*.jar .'
           dockerImage = docker.build("$registry:$DOCKER_TAG")
         }
       }
