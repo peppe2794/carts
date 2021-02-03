@@ -5,6 +5,6 @@ COPY *.jar ./app.jar
 
 RUN	chown -R myuser:mygroup ./app.jar
 
-USER user
+USER myuser
 
 ENTRYPOINT ["/usr/local/bin/java.sh","-jar","./app.jar", "--port=80"]
