@@ -3,7 +3,7 @@ FROM weaveworksdemos/msd-java:jre-latest
 WORKDIR /usr/src/app
 COPY *.jar ./app.jar
 
-RUN	chown -R user:weaveworksdemos ./app.jar
+RUN	chown -R myuser:mygroup ./app.jar
 
 USER user
 
