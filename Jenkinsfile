@@ -41,7 +41,7 @@ pipeline {
       sh 'docker run --name ${IMAGE} -t -d $registry:${DOCKER_TAG}'
       sh 'inspec exec https://github.com/dev-sec/linux-baseline -t docker://${IMAGE} --chef-license=accept || true'
       sh 'docker stop ${IMAGE}'
-      sh 'docker container rm $ {IMAGE}'
+      sh 'docker container rm ${IMAGE}'
       }
     }
     stage('Push Image') {
