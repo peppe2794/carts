@@ -27,32 +27,6 @@ pipeline {
         }
       }
     }
-    stage('Building image') {
-      steps{
-        script {
-          sh 'pwd'
-          sh 'cp ./target/*.jar .'
-          dockerImage = docker.build("$registry:$DOCKER_TAG")
-        }
-      }
-    }
-    stage('Static Security Assesment'){
-      steps{
-      sh 'docker run --name ${IMAGE} -t -d $registry:${DOCKER_TAG}'
-      sh 'inspec exec https://github.com/dev-sec/linux-baseline -t docker://${IMAGE} --chef-license=accept || true'
-      sh 'docker stop ${IMAGE}'
-      sh 'docker container rm ${IMAGE}'
-      }
-    }
-    stage('Push Image') {
-      steps{
-        script {
-          docker.withRegistry( '', registryCredential ) {
-            dockerImage.push()
-          }
-        }
-      }
-    }
  }
 }
 
